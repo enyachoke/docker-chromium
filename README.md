@@ -8,13 +8,11 @@ Heavily inspired by this [Dockerfile](https://github.com/jessfraz/dockerfiles/tr
 
 ## Features and changes compared to Jessie's Dockerfile:
 
-- Encapsulates Chromium web browser (including user interface) running on Linux.
+- Encapsulates Chromium web browser running on Linux.
 
 - User interface is available on the host via mounted X11 socket
 
-- Container will be built with the current (host) user **hardcoded** 
-and Chromium will run as this user. This way all the profile contents and 
-downloaded files are available on the host without file permission issues.
+- Container is be built with the current (host) user **hardcoded** and Chromium will run as this user. This way all the profile contents and downloaded files are available on the host without file permission issues.
 
 - Uses bridged network (Jessie used host)
 
