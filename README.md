@@ -6,24 +6,24 @@ Heavily inspired by this [Dockerfile](https://github.com/jessfraz/dockerfiles/tr
 
 
 
-## Features and changes compared to Jessie's Dockerfile:
+## Features and changes compared to Jessie's Dockerfile
 
 - Encapsulates Chromium web browser running on Linux.
 
-- User interface is available on the host via mounted X11 socket
+- User interface is available on the host via mounted X11 socket.
 
-- Container is be built with the current (host) user **hardcoded** and Chromium will run as this user. This way all the profile contents and downloaded files are available on the host without file permission issues.
+- Runs Chromium as current (host) user. This way all the profile contents, cache and downloaded files are available on the host without file permission issues.
 
-- Uses bridged network (Jessie used host)
+- Uses bridged network (Jessie used host).
 
-- Generates random `/etc/machine-id` on every build. Generates random MAC address for the container on every run. They will not get us! (maybe)
+- Generates random `/etc/machine-id` on every build. Generates random MAC address for the container on every run. They will not get us! (maybe).
 
 - Runs in Ubuntu container (Jessie used Debian). No particular reason.
 
 
-## Getting started:
+## Getting started
 
- - Build the container (once per user)
+ - Build the container:
 
         ./build.sh
 
@@ -31,18 +31,18 @@ Heavily inspired by this [Dockerfile](https://github.com/jessfraz/dockerfiles/tr
 
         ./run.sh
 
-    By default, this will create and use a profile drirectory in `~/.config/docker-chromium-default`
-    Downloaded fils will be in `~/Downloads`, alongside your normal downloaded files.
+    You will see a new Chromium window spinning up.
+    By default, this script will create and use a profile drirectory in `~/.config/docker-chromium-default` on host.
+    Downloaded files will be available on host in `~/Downloads`, alongside your normal downloaded files.
 
 
 ## Customization
 
-  - You can change the profile by adding its name as an argument. For example,
+  - You can change the profile by adding its name as an argument to `run.sh`. For example
 
         ./run.sh "another-profile"
 
-    will use `~/.config/docker-chromium-another-profile`
-    This way you can create multiple fully-isolated profiles.
+    will use `~/.config/docker-chromium-another-profile`. This way you can create multiple fully-isolated profiles.
 
   - You can change some of the settings in `run.sh`:
     ```bash
@@ -72,10 +72,14 @@ Heavily inspired by this [Dockerfile](https://github.com/jessfraz/dockerfiles/tr
 
   - [Seccomp security profiles](https://docs.docker.com/engine/security/seccomp) are in `seccomp.json`. Credits: taken as is from Jessie's dotfiles repo [here](https://github.com/jessfraz/dotfiles/blob/2e693ecfdb2fa395e8653a723de4f6f223b64134/etc/docker/seccomp/chrome.json).
 
+## Known issues
+
+ - `build.sh` detects username, group, UID and GID of the current host user and hardcodes this information on build time. So, in order to run the container as a different user next time, container has to be rebuilt.
+
 
 ## Notes
 
- - Because user is hardcoded, the image you build is probably useless for other people. I don't push the image on Docker Hub.
+ - Because the user is hardcoded, the image you build is probably useless for other people (the run under different username, group, UID and GID). That's why I don't push the image on Docker Hub.
 
  - Hope there is (will be) a way to run as current user and to not hardcode anything
 
