@@ -36,7 +36,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     fonts-roboto \
     fonts-symbola \
     hicolor-icon-theme \
-    libcanberra-gtk-module \
+    libcanberra-gtk3-module \
     libexif-dev \
     libgl1-mesa-dri \
     libgl1-mesa-glx \
