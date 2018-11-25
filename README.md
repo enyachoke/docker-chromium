@@ -33,7 +33,7 @@ downloaded files are available on the host without file permission issues.
 
         ./run.sh
 
-    By default, this will create and user a profile drirectory in `~/.config/docker-chromium-default`
+    By default, this will create and use a profile drirectory in `~/.config/docker-chromium-default`
     Downloaded fils will be in `~/Downloads`, alongside your normal downloaded files.
 
 
@@ -47,30 +47,30 @@ downloaded files are available on the host without file permission issues.
     This way you can create multiple fully-isolated profiles.
 
   - You can change some of the settings in `run.sh`:
+    ```bash
+    # Profile name if none is specified on command line
+    DEFAULT_PROFILE_NAME="default"
 
-        # Profile name if none is specified on command line
-        DEFAULT_PROFILE_NAME="default"
+    # Where to put all Chromium profiles on the host
+    PROFILE_ROOT="${HOME}/.config"
 
-        # Where to put all Chromium profiles on the host
-        PROFILE_ROOT="${HOME}/.config"
+    # Where to put all Chromium caches on the host
+    CACHE_ROOT="${HOME}/.cache"
 
-        # Where to put all Chromium caches on the host
-        CACHE_ROOT="${HOME}/.cache"
+    # Where to put downloaded files
+    DOWNLOADS_DIR="${HOME}/Downloads"
 
-        # Where to put downloaded files
-        DOWNLOADS_DIR="${HOME}/Downloads"
+    # Limit number of CPU cores available to Chromium (0 - automatic choice)
+    N_CPUS=0
 
-        # Limit number of CPU cores available to Chromium (0 - automatic choice)
-        N_CPUS=0
+    # Limit memory available to Chromium
+    MEMORY=2g
 
-        # Limit memory available to Chromium
-        MEMORY=2g
-
-        # If you want Google APIs, you should provide your own info here
-        GOOGLE_API_KEY="none"
-        GOOGLE_DEFAULT_CLIENT_ID="none"
-        GOOGLE_DEFAULT_CLIENT_SECRET="none"
-
+    # If you want Google APIs, you should provide your own info here
+    GOOGLE_API_KEY="none"
+    GOOGLE_DEFAULT_CLIENT_ID="none"
+    GOOGLE_DEFAULT_CLIENT_SECRET="none"
+    ```
 
   - [Seccomp security profiles](https://docs.docker.com/engine/security/seccomp) are in `seccomp.json`. Credits: taken as is from Jessie's dotfiles repo [here](https://github.com/jessfraz/dotfiles/blob/2e693ecfdb2fa395e8653a723de4f6f223b64134/etc/docker/seccomp/chrome.json).
 
