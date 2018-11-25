@@ -74,7 +74,7 @@ Heavily inspired by this [Dockerfile](https://github.com/jessfraz/dockerfiles/tr
 
 ## Known issues
 
- - `build.sh` detects username, group, UID and GID of the current host user and hardcodes this information on build time. So, in order to run the container as a different user next time, container has to be rebuilt.
+ - `build.sh` detects username, group, UID and GID of the current host user and hardcodes this information into the container image during build time. So, in order to run the container as a different user, image has to be rebuilt.
 
 
 ## Notes
