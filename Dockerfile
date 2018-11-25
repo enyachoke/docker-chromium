@@ -42,6 +42,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     libgl1-mesa-glx \
     libpango1.0-0 \
     libv4l-0 \
+    pulseaudio \
   && apt-get autoclean \
   && rm -rf /var/lib/apt/lists/* 
 
@@ -58,8 +59,8 @@ RUN chmod +x /sbin/tini
 # Also add this user to groups audio,video.
 RUN addgroup --gid "${GROUP_ID}" "${GROUP_NAME}" \
   && adduser --system --uid "${USER_ID}" --ingroup "${GROUP_NAME}" \
-  --home "/home/${USER_NAME}" --shell /bin/bash "${USER_NAME}" \
-  && usermod -aG audio,video "${USER_NAME}"
+  --home "/home/${USER_NAME}" --shell /bin/bash "${USER_NAME}"
+
 
 ENTRYPOINT [ "/sbin/tini", "--" ]
 
