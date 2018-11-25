@@ -2,11 +2,11 @@
 
 Chromium inside docker (withi GUI).
 
-Heavily inspired by this [Dockerfile](https://github.com/jessfraz/dockerfiles/tree/d871637d411bea624941c8732fe449c9d8a4b56e/chromium) by Jessie Frazelle ([@jessfraz](https://twitter.com/jessfraz)).
+Heavily inspired by this [Dockerfile](https://github.com/jessfraz/dockerfiles/tree/d871637d411bea624941c8732fe449c9d8a4b56e/chromium/Dockerfile) by Jessie Frazelle ([@jessfraz](https://twitter.com/jessfraz)).
 
 
 
-## Features and changes comapred to Jessie's Dockerfile:
+## Features and changes compared to Jessie's Dockerfile:
 
 - Encapsulates Chromium web browser (including user interface) running on Linux.
 
