@@ -16,6 +16,8 @@ Heavily inspired by this [Dockerfile](https://github.com/jessfraz/dockerfiles/tr
 
 - Uses bridged network (Jessie used host).
 
+- Uses host's Pulse Audio server (via unix socket) for sound
+
 - Generates random `/etc/machine-id` on every build. Generates random MAC address for the container on every run. They will not get us! (maybe).
 
 - Runs in Ubuntu container (Jessie used Debian). No particular reason.
