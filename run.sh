@@ -72,25 +72,25 @@ mkdir -p "${CACHE_DIR}"
 mkdir -p "${DOWNLOADS_DIR}"
 
 docker run --rm \
-  --name "chromium-${PROFILE_NAME}" \
-  --cpuset-cpus "${N_CPUS}" \
-  --memory "${MEMORY}" \
-  --env DISPLAY="unix${DISPLAY}" \
-	--env PULSE_SERVER="unix:${XDG_RUNTIME_DIR}/pulse/native" \
-  --volume "/tmp/.X11-unix:/tmp/.X11-unix" \
-  --volume "/var/run/dbus:/var/run/dbus" \
-	--volume "${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native" \
-  --volume "${PROFILE_DIR}:/home/${USER_NAME}/.config/chromium" \
-  --volume "${CACHE_DIR}:/home/${USER_NAME}/.cache/chromium" \
-  --volume "${DOWNLOADS_DIR}:/home/${USER_NAME}/Downloads" \
-  --volume "/dev/shm:/dev/shm" \
-  --security-opt seccomp="${THIS_DIR}/seccomp.json" \
-  --device /dev/snd \
-  --mac-address "${MAC_ADDR}" \
-  --dns 1.0.0.1  \
-  --dns 1.1.1.1  \
-  --dns 8.8.8.8  \
-  --dns 8.8.4.4  \
-  --sysctl "net.ipv6.conf.all.disable_ipv6=1" \
-  --user "${USER_ID}:${GROUP_ID}" \
-  chromium:latest
+--name "chromium-${PROFILE_NAME}" \
+--cpuset-cpus "${N_CPUS}" \
+--memory "${MEMORY}" \
+--env DISPLAY="unix${DISPLAY}" \
+--env PULSE_SERVER="unix:${XDG_RUNTIME_DIR}/pulse/native" \
+--volume "/tmp/.X11-unix:/tmp/.X11-unix" \
+--volume "/var/run/dbus:/var/run/dbus" \
+--volume "${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native" \
+--volume "${PROFILE_DIR}:/home/${USER_NAME}/.config/chromium" \
+--volume "${CACHE_DIR}:/home/${USER_NAME}/.cache/chromium" \
+--volume "${DOWNLOADS_DIR}:/home/${USER_NAME}/Downloads" \
+--volume "/dev/shm:/dev/shm" \
+--security-opt seccomp="${THIS_DIR}/seccomp.json" \
+--device /dev/snd \
+--mac-address "${MAC_ADDR}" \
+--dns 1.0.0.1  \
+--dns 1.1.1.1  \
+--dns 8.8.8.8  \
+--dns 8.8.4.4  \
+--sysctl "net.ipv6.conf.all.disable_ipv6=1" \
+--user "${USER_ID}:${GROUP_ID}" \
+chromium:latest
