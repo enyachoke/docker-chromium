@@ -71,12 +71,17 @@ mkdir -p "${PROFILE_DIR}"
 mkdir -p "${CACHE_DIR}"
 mkdir -p "${DOWNLOADS_DIR}"
 
+XAUTH="${HOME}/.Xauthority"
+
+
 docker run --rm \
 --name "chromium-${PROFILE_NAME}" \
 --cpuset-cpus "${N_CPUS}" \
 --memory "${MEMORY}" \
 --env DISPLAY="unix${DISPLAY}" \
 --env PULSE_SERVER="unix:${XDG_RUNTIME_DIR}/pulse/native" \
+--env XAUTHORITY="${XAUTH}" \
+--volume "${XAUTH}:${XAUTH}" \
 --volume "/tmp/.X11-unix:/tmp/.X11-unix" \
 --volume "/var/run/dbus:/var/run/dbus" \
 --volume "${XDG_RUNTIME_DIR}/pulse/native:${XDG_RUNTIME_DIR}/pulse/native" \
@@ -84,8 +89,11 @@ docker run --rm \
 --volume "${CACHE_DIR}:/home/${USER_NAME}/.cache/chromium" \
 --volume "${DOWNLOADS_DIR}:/home/${USER_NAME}/Downloads" \
 --volume "/dev/shm:/dev/shm" \
+--volume "/dev/dri/card0:/dev/dri/card0" \
+--volume "/home/${USER_NAME}/.themes:/home/${USER_NAME}/.themes:ro" \
 --security-opt seccomp="${THIS_DIR}/seccomp.json" \
 --device /dev/snd \
+--device /dev/dri/card0 \
 --mac-address "${MAC_ADDR}" \
 --dns 1.0.0.1  \
 --dns 1.1.1.1  \
